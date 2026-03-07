@@ -13,4 +13,15 @@ class Project(BaseModel):
         return value
 
     class Config:
-        arbitrary_types_allowed = True    
+        arbitrary_types_allowed = True  
+
+    @classmethod
+    def get_indexes(cls):
+        return [
+            {
+                "key": [("Project_id", 1)],
+                "name": "project_id_index_1",
+                "unique": True
+            }
+        ]
+        
