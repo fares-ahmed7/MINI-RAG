@@ -7,7 +7,7 @@ from pymongo import InsertOne
 class ChunkModel(BaseDataModel):
     def __init__(self, db_client: object):
         super().__init__(db_client=db_client)
-        self.collection = self.db_client[DataBaseEnum.COLLECTION_PROJECTS_NAME.value]
+        self.collection = self.db_client[DataBaseEnum.COLLECTION_CHUNKS_NAME.value]
 
     @classmethod
     async def create_instance(cls, db_client: object):

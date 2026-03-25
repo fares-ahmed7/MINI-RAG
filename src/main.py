@@ -8,7 +8,7 @@ from helpers.config import get_settings
 async def lifespan(app: FastAPI):
     settings = get_settings()
    
-    app.mongo_conn = AsyncIOMotorClient(settings.MONGODB_URI) 
+    app.mongo_conn = AsyncIOMotorClient(settings.MONGODB_URL) 
     app.db_client = app.mongo_conn[settings.MONGODB_DATABASE]
     
     yield
