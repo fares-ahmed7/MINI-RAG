@@ -1,5 +1,5 @@
 from stores.llm.LLMEnums import LLMEnums
-from providers import OPENAIProviders, CoHereProvider
+from .providers import OPENAIProviders, CoHereProvider
 
 class LLMProviderFactory:
     def __init__(self, config: dict):

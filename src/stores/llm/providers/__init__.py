@@ -1,3 +1,3 @@
-from CoHereProviders import CoHereProvider
-from OPENAIProviders import OPENAIProviders
+from .CoHereProviders import CoHereProvider
+from .OPENAIProviders import OPENAIProviders
 

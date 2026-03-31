@@ -22,9 +22,10 @@ class OPENAIProviders(LLMInterface):
 
         self.client = OpenAI(
             api_key = self.api_key,
-            api_url = self.api_url
+            base_url = self.api_url if self.api_url and len(self.api_url) else None
         )
-
+        
+        self.enums = OpenAIEnums
         self.logger = logging.getLogger(__name__)
 
     def set_generation_model(self, model_id: str):
@@ -37,7 +38,7 @@ class OPENAIProviders(LLMInterface):
     def process_text(self, text: str):
         return text[:self.default_input_max_characters].strip()
 
-    def generation_text(self, prompt: str, chat_history: list=[], max_output_tokens: int = None,
+    def generate_text(self, prompt: str, chat_history: list=[], max_output_tokens: int = None,
                          temperature: float = None):
 
         if not self.client:
