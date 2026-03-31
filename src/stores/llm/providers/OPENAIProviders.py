@@ -67,7 +67,8 @@ class OPENAIProviders(LLMInterface):
             self.logger.error("Error while generating text with OpenAI") 
             return None
         
-        return response.choices[0].message["content"]
+        message = response.choices[0].message
+        return message.content if hasattr(message, 'content') else message["content"]
 
     def embed_text(self, text: str, document_type: str = None):
 
