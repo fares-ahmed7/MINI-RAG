@@ -16,7 +16,7 @@ async def lifespan(app: FastAPI):
     
     app.db_engine = create_async_engine(postgres_conn)
 
-    app.db_client = sessionmaker(app.db_engine, expire_on_commit=False, class_=AsyncSession)()
+    app.db_client = sessionmaker(app.db_engine, expire_on_commit=False, class_=AsyncSession)
     
     llm_provider_factory = LLMProviderFactory(settings)
     vectordb_provider_factory = VectorDBProviderFactory(settings)
