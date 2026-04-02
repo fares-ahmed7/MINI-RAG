@@ -1,5 +1,5 @@
 from .minirag_base import SQLAlchemyBase
-from sqlalchemy import Column, Integer, func, DateTime, String, ForeignKey
+from sqlalchemy import Column, Integer, DateTime, func, String, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID, JSONB
 from sqlalchemy.orm import relationship
 from sqlalchemy import Index
@@ -17,16 +17,16 @@ class Asset(SQLAlchemyBase):
     asset_size = Column(Integer, nullable=False)
     asset_config = Column(JSONB, nullable=True)
 
-    asset_project_id = Column(Integer, ForeignKey("projects.Project_id"), nullable=False)
+    asset_project_id = Column(Integer, ForeignKey("projects.project_id"), nullable=False)
 
     created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)
-    updated_at = Column(DateTime(timezone=True), onupdate=func.now(), nullable=True)    
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now(), nullable=True)
 
     project = relationship("Project", back_populates="assets")
+    chunks = relationship("DataChunk", back_populates="asset")
 
     __table_args__ = (
-        Index("ix_asset_project_id", asset_project_id),
-        Index("ix_asset_type", asset_type),
-
+        Index('ix_asset_project_id', asset_project_id),
+        Index('ix_asset_type', asset_type),
     )
 
