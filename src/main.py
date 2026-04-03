@@ -8,6 +8,9 @@ from stores.llm.templates.template_parser import TemplateParser
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 
+# Import metrics setup
+from utils.metrics import setup_metrics
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     settings = get_settings()
@@ -46,6 +49,9 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
+
+# Setup Prometheus metrics
+setup_metrics(app)
 
 app.include_router(base.base_router)
 app.include_router(data.data_router)
