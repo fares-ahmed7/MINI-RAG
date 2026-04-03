@@ -1,4 +1,4 @@
-from stores.llm.LLMEnums import LLMEnums
+from .LLMEnums import LLMEnums
 from .providers import OPENAIProviders, CoHereProvider
 
 class LLMProviderFactory:
